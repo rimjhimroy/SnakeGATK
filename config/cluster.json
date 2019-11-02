@@ -1,0 +1,146 @@
+{
+    "__default__" :
+    {
+        "account" : "rchoudhury",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu" : 1,
+        "partition" : "all"
+        
+    },
+    "yaha_bowtie_index" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_%j.out",
+        "error": "output/slurm_out/{rule}_%j.err"
+    },
+    "samtools_stats" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcards.sample}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcards.sample}_%j.err"
+    },
+    "add_readgroup" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcards.sample}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcards.sample}_%j.err"
+    },
+    "mark_duplicates" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcards.sample}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcards.sample}_%j.err"
+    },
+    "recalibrate_base_qualities" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcards.sample}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcards.sample}_%j.err"
+    },
+    "samtools_index" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcards.prefix}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcards.prefix}_%j.err"
+    },
+    "call_variants" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcards.sample}.{wildcard.contig}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcards.sample}.{wildcard.contig}_%j.err"
+    },
+    "combine_calls" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcard.contig}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcard.contig}_%j.err"
+    },
+    "genotype_variants" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcard.contig}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcard.contig}_%j.err"
+    },
+    "merge_variants" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_%j.out",
+        "error": "output/slurm_out/{rule}_%j.err"
+    },
+    "select_calls" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcard.vartype}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcard.vartype}_%j.err"
+    },
+    "hard_filter_calls" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_{wildcard.vartype}_%j.out",
+        "error": "output/slurm_out/{rule}_{wildcard.vartype}_%j.err"
+    },
+    "recalibrate_calls_snps" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_%j.out",
+        "error": "output/slurm_out/{rule}_%j.err"
+    },
+    "merge_calls" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_%j.out",
+        "error": "output/slurm_out/{rule}_%j.err"
+    },
+    "snpeff" :
+    {
+        "partition" : "all",
+        "time" : "4-0",
+        "mem": "48G",
+        "cpu": "8",
+        "output": "output/slurm_out/{rule}_%j.out",
+        "error": "output/slurm_out/{rule}_%j.err"
+    }
+}
