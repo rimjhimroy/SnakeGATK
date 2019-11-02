@@ -50,6 +50,5 @@ Execute in a cluster with SLURM
     sbatch snakemake.sh
 
 ## Map of workflow
-<img src="myFirstAlignment2.pdf" alt="some text"  width="4200" height="4200">
 
-
+<img src="dag/2.pdf " alt="DAG of the workflow"  width="4200" height="4200">
