@@ -12,6 +12,8 @@ rule snpeff:
         extra="-Xmx6g"
     conda:
         "../envs/snpeff.yaml"
+    benchmark:
+        "benchmarks/annotation/snpeff.json"
     shell:"""
-        snpEff -Xmx4g -stats {output.stats} -csvStats {output.csvstats} -v {params.reference} {input} > {output.vcf}
+        snpEff {params.extra} -stats {output.stats} -csvStats {output.csvstats} -v {params.reference} {input} > {output.vcf}
     """

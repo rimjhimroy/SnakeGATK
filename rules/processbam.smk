@@ -7,6 +7,8 @@ rule add_readgroup:
         "logs/picard/readgroup/{sample}.log"
     conda:
         "../envs/picard.yaml"
+    benchmark:
+        "benchmarks/processbam/add_readgroup.{sample}.json"
     shell:
         "picard AddOrReplaceReadGroups INPUT={input} OUTPUT={output} SORT_ORDER=coordinate RGID={wildcards.sample}.1 RGLB={wildcards.sample} RGPL=illumina RGPU=unit1 RGSM={wildcards.sample} VALIDATION_STRINGENCY=LENIENT CREATE_INDEX=true"
 
@@ -22,6 +24,8 @@ rule mark_duplicates:
         config["params"]["picard"]["MarkDuplicates"]
     conda:
         "../envs/picard.yaml"
+    benchmark:
+        "benchmarks/processbam/mark_duplicates.{sample}.json"
     shell:
         "picard MarkDuplicates INPUT={input} OUTPUT={output.bam} METRICS_FILE={output.metrics} VALIDATION_STRINGENCY=LENIENT CREATE_INDEX=true"
 
@@ -38,6 +42,8 @@ rule recalibrate_base_qualities:
         extra=get_regions_param() + config["params"]["gatk"]["BaseRecalibrator"]
     log:
         "logs/gatk/bqsr/{sample}.log"
+    benchmark:
+        "benchmarks/processbam/recalibrate_base_qualities.{sample}.json"
     wrapper:
         "0.27.1/bio/gatk/baserecalibrator"
 
@@ -47,5 +53,7 @@ rule samtools_index:
         "{prefix}.bam"
     output:
         "{prefix}.bam.bai"
+    benchmark:
+        "benchmarks/processbam/samtools_index.json"
     wrapper:
         "0.27.1/bio/samtools/index"

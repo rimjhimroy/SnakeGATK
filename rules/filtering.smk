@@ -16,6 +16,8 @@ rule select_calls:
         extra=get_vartype_arg
     log:
         "logs/gatk/selectvariants/{vartype}.log"
+    benchmark:
+        "benchmarks/filtering/select_calls.{vartype}.json"
     wrapper:
         "0.27.1/bio/gatk/selectvariants"
 
@@ -31,11 +33,13 @@ rule hard_filter_calls:
         ref=config["ref"]["genome"],
         vcf="output/filtered/all.{vartype}.vcf.gz"
     output:
-        vcf=temp("output/filtered/all.{vartype}.hardfiltered.vcf.gz")
+        vcf="output/filtered/all.{vartype}.hardfiltered.vcf.gz"
     params:
         filters=get_filter
     log:
         "logs/gatk/variantfiltration/{vartype}.log"
+    benchmark:
+        "benchmarks/filtering/hard_filter_calls.{vartype}.json"
     wrapper:
         "0.27.1/bio/gatk/variantfiltration"
 
@@ -59,6 +63,8 @@ rule recalibrate_calls_snps:
         "../envs/gatk.yaml"
     log:
         "logs/gatk/variantrecalibrator/snvs.log"
+    benchmark:
+        "benchmarks/filtering/recalibrate_calls_snps.json"
     params:
         # set mode, must be either SNP, INDEL or BOTH
         # resource parameter definition. Key must match named input files from above.
@@ -76,21 +82,6 @@ rule recalibrate_calls_snps:
 
 #include: rules/vqsr_indel.smk
 
-rule hard_filter_calls_indels:
-    input:
-        ref=config["ref"]["genome"],
-        vcf="output/filtered/all.indels.vcf.gz"
-    output:
-        vcf="output/filtered/all.indels.hardfiltered.vcf.gz"
-    log:
-        "logs/gatk/variantfiltration/indels.log"
-    conda:
-        "../envs/gatk.yaml"
-    shell:"""
-    gatk SelectVariants -R {input.ref} -V {input.vcf} -O {input.vcf}.select.vcf  -select-type INDEL
-    gatk VariantFiltration -R {input.ref} -V {input.vcf}.select.vcf -O {output.vcf} -filter 'QD < 2.0' --filter-name 'QD2' -filter 'QUAL < 30.0' --filter-name 'QUAL30' -filter 'FS > 200.0' --filter-name 'FS200' -filter 'ReadPosRankSum < -20.0' --filter-name 'ReadPosRankSum-20'
- 
-    """
 
 rule merge_calls:
     input:
@@ -99,6 +90,8 @@ rule merge_calls:
         vcf="output/filtered/all.vcf.gz"
     log:
         "logs/picard/merge-filtered.log"
+    benchmark:
+        "benchmarks/filtering/merge_calls.json"
     conda:
         "../envs/picard.yaml"
     wrapper:

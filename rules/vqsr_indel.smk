@@ -18,6 +18,8 @@ rule recalibrate_calls_indel:
         "../envs/gatk.yaml"
     log:
         "logs/gatk/variantrecalibrator/INDEL.log"
+    benchmark:
+        "benchmarks/filtering/recalibrate_calls_indel.json"
     params:
         # set mode, must be either SNP, INDEL or BOTH
         # resource parameter definition. Key must match named input files from above.

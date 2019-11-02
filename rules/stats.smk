@@ -5,6 +5,8 @@ rule vcf_to_tsv:
         report("output/tables/calls.tsv.gz", caption="../report/calls.rst", category="Calls")
     conda:
         "../envs/rbt.yaml"
+    benchmark:
+        "benchmarks/stats/vcf_to_tsv.json"
     shell:
         "bcftools view --apply-filters PASS --output-type u {input} | "
         "rbt vcf-to-txt -g --fmt DP AD --info ANN | "
@@ -19,5 +21,7 @@ rule plot_stats:
         freqs=report("output/plots/allele-freqs.svg", caption="../report/freqs.rst", category="Plots")
     conda:
         "../envs/stats.yaml"
+    benchmark:
+        "benchmarks/stats/plot_stats.json"
     script:
         "../scripts/plot-depths.py"

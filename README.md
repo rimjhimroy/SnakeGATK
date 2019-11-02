@@ -30,7 +30,7 @@ This workflow is a modified fork of the [dna-seq-gatk-variant-calling](https://g
 
 4. Please run initialize rule first
 
-    snakemake --use-conda -s rules/index.smk 
+    snakemake --use-conda -s rules/index.smk  
 
 
 NOTE: I was not able to perforrm vqsr on indels. It gave me error "java.lang.IllegalArgumentException: No data found." So I went for hardfiltering the indels. But the vqsr rule for indell is provided in `rules/vqsr_indels.smk` and can be plugged in after a few tweaks. 
@@ -49,6 +49,7 @@ Execute in a cluster with SLURM
 
     sbatch snakemake.sh
 
-
+## Map of workflow
+<img src="myFirstAlignment2.pdf" alt="some text"  width="4200" height="4200">
 
 
