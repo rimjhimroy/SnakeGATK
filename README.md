@@ -33,7 +33,7 @@ This workflow is a modified fork of the [dna-seq-gatk-variant-calling](https://g
     snakemake --use-conda -s rules/index.smk  
 
 
-NOTE: I was not able to perforrm vqsr on indels. It gave me error "java.lang.IllegalArgumentException: No data found." So I went for hardfiltering the indels. But the vqsr rule for indell is provided in `rules/vqsr_indels.smk` and can be plugged in after a few tweaks. 
+**NOTE**: I was not able to perforrm vqsr on indels. It gave me error "java.lang.IllegalArgumentException: No data found." So I went for hardfiltering the indels. But the vqsr rule for indell is provided in `rules/vqsr_indels.smk` and can be plugged in after a few tweaks. 
 
 #### Step 3: Execute workflow
 
