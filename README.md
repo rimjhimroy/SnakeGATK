@@ -51,4 +51,4 @@ Execute in a cluster with SLURM
 
 ## Map of workflow
 
-<img src="dag/2.svg" alt="DAG of the workflow"  width="4200" height="4200">
+<img src="dag/2.svg" alt="DAG of the workflow"  width="4200" height="3200">
