@@ -1,0 +1,9 @@
+name: index
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - picard=2.21.2=0
+  - samtools=1.9=h10a08f8_12
+  - tabix=0.2.6

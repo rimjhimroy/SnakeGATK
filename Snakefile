@@ -1,18 +1,16 @@
-include: "rules/common.smk"
-
 ##### Target rules #####
 
 rule all:
     input:
-        "annotated/all.vcf.gz",
-        "qc/multiqc.html",
-        "plots/depths.svg",
-        "plots/allele-freqs.svg"
+        "output/annotated/all.vcf.gz",
+        "output/plots/depths.svg",
+        "output/plots/allele-freqs.svg"
 
 
 ##### Modules #####
 
-include: "rules/mapping.smk"
+include: "rules/common.smk"
+include: "rules/processbam.smk"
 include: "rules/calling.smk"
 include: "rules/filtering.smk"
 include: "rules/stats.smk"

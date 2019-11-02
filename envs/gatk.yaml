@@ -1,0 +1,9 @@
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+  - r
+dependencies:
+  - gatk4 ==4.0.5.1
+  - r-base=3.6.1=hba50c9b_5
+  - r-ggplot2 

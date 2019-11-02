@@ -12,7 +12,6 @@ Finally, SnpEff_ was used to predict and report variant effects.
 In addition, quality control was performed with FastQC_, Samtools_, and Picard_ and aggregated into an interactive report via MultiQC_.
 
 .. _GATK: https://software.broadinstitute.org/gatk/
-.. _BWA mem: http://bio-bwa.sourceforge.net/
 .. _Picard: https://broadinstitute.github.io/picard
 .. _GATK best practices workflow: https://software.broadinstitute.org/gatk/best-practices/workflow?id=11145
 .. _GVCF: https://gatkforums.broadinstitute.org/gatk/discussion/4017/what-is-a-gvcf-and-how-is-it-different-from-a-regular-vcf

@@ -1,13 +1,17 @@
 rule snpeff:
     input:
-        "filtered/all.vcf.gz",
+        "output/filtered/all.vcf.gz",
     output:
-        vcf=report("annotated/all.vcf.gz", caption="../report/vcf.rst", category="Calls"),
-        csvstats="snpeff/all.csv"
+        vcf="output/annotated/all.vcf.gz",
+        csvstats="output/snpeff/all.csv",
+        stats="output/snpeff/all.html"
     log:
-        "logs/snpeff.log"
+        "logs/snpeff/snpeff.log"
     params:
         reference=config["ref"]["name"],
         extra="-Xmx6g"
-    wrapper:
-        "0.27.1/bio/snpeff"
+    conda:
+        "../envs/snpeff.yaml"
+    shell:"""
+        snpEff -Xmx4g -stats {output.stats} -csvStats {output.csvstats} -v {params.reference} {input} > {output.vcf}
+    """
