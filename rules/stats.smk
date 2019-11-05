@@ -1,6 +1,7 @@
+
 rule vcf_to_tsv:
     input:
-        "output/annotated/all.vcf.gz"
+        "output/annotated/all.vcf"
     output:
         report("output/tables/calls.tsv.gz", caption="../report/calls.rst", category="Calls")
     conda:
@@ -25,3 +26,22 @@ rule plot_stats:
         "benchmarks/stats/plot_stats.json"
     script:
         "../scripts/plot-depths.py"
+
+
+
+
+rule concordance_all:
+    input:
+        ref=config["ref"]["genome"],
+        gvcfs="output/annotated/all.vcf"
+    output:
+        outsnp="output/concordance/all.concordance.snp.tsv",
+        outindel="output/concordance/all.concordance.indel.tsv"
+    conda:
+        "../envs/gatk.yaml"
+    benchmark:
+        "benchmarks/concordance/all.concordance.json"
+    shell:"""
+    gatk Concordance -R {input.ref} -eval {input.gvcfs}--truth data/ref/1000G_phase1.snps.high_confidence.b37.vcf.gz --summary {output.outsnp}
+    gatk Concordance -R {input.ref} -eval {input.gvcfs}--truth data/ref/Mills_and_1000G_gold_standard.indels.b37.vcf.gz  --summary {output.outindel}
+    """

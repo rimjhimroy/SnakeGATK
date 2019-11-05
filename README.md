@@ -8,7 +8,7 @@ This Snakemake pipeline implements the [GATK best-practices workflow](https://so
 
 * Rimjhim Roy Choudhury (https://rimjhimroy.github.io)
 
-This workflow is a modified fork of the [dna-seq-gatk-variant-calling](https://github.com/snakemake-workflows/dna-seq-gatk-variant-calling) workflow by [Johannes Köster](https://koesterlab.github.io)  
+This workflow is a **modified fork** of the [dna-seq-gatk-variant-calling](https://github.com/snakemake-workflows/dna-seq-gatk-variant-calling) workflow by [Johannes Köster](https://koesterlab.github.io)  
 
 ## Usage
 
@@ -51,4 +51,4 @@ Execute in a cluster with SLURM
 
 ## Map of workflow
 
-<img src="dag/2.svg" alt="DAG of the workflow"  width="4200" height="3200">
+<img src="dag/dag.svg" alt="Directed acyclic graph (DAG) of the workflow"  width="4200" height="3200">

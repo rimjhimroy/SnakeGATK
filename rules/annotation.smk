@@ -2,7 +2,7 @@ rule snpeff:
     input:
         "output/filtered/all.vcf.gz",
     output:
-        vcf="output/annotated/all.vcf.gz",
+        vcf="output/annotated/all.vcf",
         csvstats="output/snpeff/all.csv",
         stats="output/snpeff/all.html"
     log:

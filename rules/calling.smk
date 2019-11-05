@@ -18,6 +18,7 @@ rule call_variants:
 
 rule combine_calls:
     input:
+        conc=expand("output/concordance/{sample}.{{contig}}.concordance.snp.tsv",sample=samples.index),
         ref=config["ref"]["genome"],
         gvcfs=expand("output/called/{sample}.{{contig}}.g.vcf.gz", sample=samples.index)
     output:
@@ -28,6 +29,22 @@ rule combine_calls:
         "benchmarks/calling/combine_calls.{contig}.json"
     wrapper:
         "0.27.1/bio/gatk/combinegvcfs"
+
+rule concordance:
+    input:
+        ref=config["ref"]["genome"],
+        gvcfs="output/called/{sample}.{contig}.g.vcf.gz"
+    output:
+        outsnp="output/concordance/{sample}.{contig}.concordance.snp.tsv",
+        outindel="output/concordance/{sample}.{contig}.concordance.indel.tsv"
+    conda:
+        "../envs/gatk.yaml"
+    benchmark:
+        "benchmarks/concordance/{sample}.{contig}.concordance.json"
+    shell:"""
+    gatk Concordance -R {input.ref} -eval {input.gvcfs} --truth data/ref/1000G_phase1.snps.high_confidence.b37.vcf.gz --summary {output.outsnp}
+    gatk Concordance -R {input.ref} -eval {input.gvcfs} --truth data/ref/Mills_and_1000G_gold_standard.indels.b37.vcf.gz  --summary {output.outindel}
+    """
 
 
 rule genotype_variants:
@@ -55,6 +72,6 @@ rule merge_variants:
     log:
         "logs/picard/merge-genotyped.log"
     benchmark:
-        "benchmarks/calling/merge_variants.{contig}.json"
+        "benchmarks/calling/merge_variants.json"
     wrapper:
         "0.40.2/bio/picard/mergevcfs"

@@ -2,10 +2,10 @@
 
 rule all:
     input:
-        "output/annotated/all.vcf.gz",
+        "output/annotated/all.vcf",
         "output/plots/depths.svg",
-        "output/plots/allele-freqs.svg"
-
+        "output/plots/allele-freqs.svg",
+        "output/concordance/all.concordance.snp.tsv"
 
 ##### Modules #####
 

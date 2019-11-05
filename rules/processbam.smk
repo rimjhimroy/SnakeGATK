@@ -37,7 +37,7 @@ rule recalibrate_base_qualities:
         ref=config["ref"]["genome"],
         known=config["ref"]["known-variants"]
     output:
-        bam=protected("output/recal/{sample}.bam")
+        bam="output/recal/{sample}.bam"
     params:
         extra=get_regions_param() + config["params"]["gatk"]["BaseRecalibrator"]
     log:
@@ -54,6 +54,6 @@ rule samtools_index:
     output:
         "{prefix}.bam.bai"
     benchmark:
-        "benchmarks/processbam/samtools_index.json"
+        "benchmarks/processbam/{prefix}.samtools_index.json"
     wrapper:
         "0.27.1/bio/samtools/index"
