@@ -17,7 +17,20 @@ This workflow is a **modified fork** of the [dna-seq-gatk-variant-calling](https
 1. Fork a the repository.
 2. [Clone](https://help.github.com/en/articles/cloning-a-repository) the newly created repository to your local system, into the place where you want to perform the data analysis.
 
-#### Step 2: Configure workflow
+#### Step 3: Install conda and Snakemake
+
+```bash
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh 
+conda config --set auto_activate_base False
+conda update conda
+conda create -n snakemake -c bioconda snakemake=5.7.4
+conda activate snakemake
+```
+
+
+#### Step 3: Configure workflow
 
 1. Edit the samples.tsv and units.tsv to accomodate the provided bam files.
 
@@ -49,4 +62,4 @@ Execute in a cluster with SLURM
 
 ## Map of workflow
 
-<img src="dag/dag.svg" alt="Directed acyclic graph (DAG) of the workflow"  width="4200" height="3200">
+<img src="dag/dag.svg" alt="Directed acyclic graph (DAG) of the workflow"  width="4200" height="3000">
