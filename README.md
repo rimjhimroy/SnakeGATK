@@ -19,16 +19,14 @@ This workflow is a **modified fork** of the [dna-seq-gatk-variant-calling](https
 
 #### Step 2: Configure workflow
 
-1. Edited the samples.tsv and units.tsv to accomodate the provided bam files.
+1. Edit the samples.tsv and units.tsv to accomodate the provided bam files.
 
 2. Download ***recaliberation files***:  
     • [dbsnp](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/dbsnp_138.b37.vcf.gz) as set of known variants.  
-    • Also got: [hapmap](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/hapmap_3.3.b37.vcf.gz); [1000G_omni](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/1000G_omni2.5.b37.vcf.gz) and [1000G_phase1](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/1000G_phase1.snps.high_confidence.b37.vcf.gz) for VQSR.  
-    • Created tabix index for all the vcf files
+    • Also got: [hapmap](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/hapmap_3.3.b37.vcf.gz); [1000G_omni](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/1000G_omni2.5.b37.vcf.gz) and [1000G_phase1](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/1000G_phase1.snps.high_confidence.b37.vcf.gz) and [Mills_and_1000G_gold_standard.indels](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/Mills_and_1000G_gold_standard.indels.b37.vcf.gz) for VQSR.
+    • Put all the above files in `ref/`folder.
 
-3. Created a directory `data/bam` inside the workflow and created symbolic links to all the provided *.bam and *.bam.bai files. Create link to `hs37d5.chr7.fa`,  all the recaliberation files and their tabix index inside a folder called `data/ref` inside the workflow.
-
-4. Please run initialize rule first
+3. Please run initialize rule first
 
     snakemake --use-conda -s rules/index.smk  
 
